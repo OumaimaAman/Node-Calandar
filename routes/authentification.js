@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 router.post('/login', async (req, res, next)=>{
     try{
         passport.authenticate('login', async (err, connect) => {
-            console.log('authen');   
+            console.log(req.body);   
             if(err) next(err);
                 if(connect) {
                     const token = jwt.sign({ username : req.body.username}, 'CLESECRET');
