@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const passport = require('passport');
 
 require('./services/authentification');
 
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use(passport.authenticate('jwt', {session: false}));
 app.use('/calandars', calandarRouter);
 
 // catch 404 and forward to error handler
